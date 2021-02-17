@@ -25,12 +25,22 @@ function deleteToDo(event){
     saveToDos();
 }
 
+function deleteToDoFinish(event){
+    const btn = event.target;
+    const li = btn.parentNode;
+    toDoFinished_js.removeChild(li);
+    const cleanToDos = toDoFinished.filter(function(toDoFinished){
+        return toDoFinished.id !== parseInt(li.id);
+    });
+    toDoFinished = cleanToDos;
+    saveToDos();
+}
+
 function finishToDo(event){
     const btn = event.target;
     const li = btn.parentNode;
     const id = li.querySelector('span');
-    console.log()
-    paintToDoFinish(id.innerText)
+    paintToDoFinish(id.innerText);
     toDoPending_js.removeChild(li);
     const cleanToDos = toDoPending.filter(function(toDoPending){
         return toDoPending.id !== parseInt(li.id);
@@ -41,9 +51,9 @@ function finishToDo(event){
 
 function pendingToDo(event){
     const btn = event.target;
-    console.log(btn)
     const li = btn.parentNode;
-    console.log(li)
+    const id = li.querySelector('span');
+    paintToDo(id.innerText);
     toDoFinished_js.removeChild(li);
     const cleanToDos = toDoFinished.filter(function(toDoFinished){
         return toDoFinished.id !== parseInt(li.id);
@@ -84,19 +94,19 @@ function paintToDoFinish(text){
     finishedId += 1;
     delBtn.innerText = "❌";
     pendingBtn.innerText = "❓";
-    delBtn.addEventListener('click', deleteToDo)
+    delBtn.addEventListener('click', deleteToDoFinish)
     pendingBtn.addEventListener('click', pendingToDo)
     span.innerText = text;
     li.appendChild(span);
     li.appendChild(delBtn);
     li.appendChild(pendingBtn);
     li.id = finishedId;
-    toDoPending_js.appendChild(li);
+    toDoFinished_js.appendChild(li);
     const toDoObj = {
         text:text,
         id:finishedId
     }
-    toDoPending.push(toDoObj);
+    toDoFinished.push(toDoObj);
     saveToDos();
 }
 
