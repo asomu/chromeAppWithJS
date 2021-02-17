@@ -1,6 +1,6 @@
 const h2 = document.querySelector("h2");
 const color = ["#1abc9c", "#3498db", "#9b59b6", "#f39c12", "#e74c3c"];
-const selector = document.querySelector("option")
+const selector = document.querySelector("select")
 
 const superEventHandler = {
     handleEnter: function(){
@@ -29,5 +29,5 @@ h2.addEventListener("mouseleave", superEventHandler.handleLeave);
 h2.addEventListener("mouseenter", superEventHandler.handleEnter);
 window.addEventListener("resize", superEventHandler.handleResize);
 window.addEventListener("contextmenu", superEventHandler.handleContext);
-selector.addEventListener("select", superEventHandler.handleSelect);
+selector.addEventListener("change", superEventHandler.handleSelect);
 

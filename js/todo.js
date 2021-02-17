@@ -25,6 +25,7 @@ function loadToDos() {
         });
     }
 }
+
 function saveToDos() {
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
